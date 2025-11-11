@@ -1,10 +1,19 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import { PersonLink } from './PersonLink/PersonLink';
+import { Person } from '../../types';
+import { PersonLink } from '../PersonLink/PersonLink';
 import { useNavigate } from 'react-router-dom';
-import { PeopleTableHeader } from './PeopleTable/PeopleTableHeader';
+import { PeopleTableHeader } from './PeopleTableHeader';
 
-export const PeopleTable = ({
+interface Props {
+  people: Person[];
+  activeSlug: string | null;
+  sortBy: string;
+  order: 'asc' | 'desc';
+  setSearchParams: (params: URLSearchParams) => void;
+}
+
+export const PeopleTable: React.FC<Props> = ({
   people,
   activeSlug,
   sortBy,

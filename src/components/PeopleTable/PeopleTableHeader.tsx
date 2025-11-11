@@ -25,16 +25,20 @@ export const PeopleTableHeader: React.FC<PeopleTableHeaderProps> = ({
 
   const handleSort = (field: string) => {
     const newParams = new URLSearchParams(searchParams);
-    let newOrder = 'asc';
 
     if (sortBy === field) {
-      newOrder = order === 'asc' ? 'desc' : 'asc';
+      if (order === 'asc') {
+        newParams.set('order', 'desc');
+        newParams.set('sort', field);
+      } else {
+        newParams.delete('sort');
+        newParams.delete('order');
+      }
     } else {
-      newOrder = 'asc';
+      newParams.set('sort', field);
+      newParams.set('order', 'asc');
     }
 
-    newParams.set('sort', field);
-    newParams.set('order', newOrder);
     setSearchParams(newParams);
   };
 

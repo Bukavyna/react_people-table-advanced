@@ -4,7 +4,7 @@ import { Loader } from '../Loader';
 import { Person } from '../../types';
 import { getPeople } from '../../api';
 import { PeopleFilters } from '../PeopleTable/PeopleFilters';
-import { PeopleTable } from '../PeopleTable';
+import { PeopleTable } from '../PeopleTable/PeopleTable';
 
 export const PeoplePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -120,17 +120,13 @@ export const PeoplePage: React.FC = () => {
 
       <PeopleFilters />
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <PeopleTable
-          people={visiblePeople}
-          activeSlug={activeSlug}
-          sortBy={sortField}
-          order={sortOrder as 'asc' | 'desc'}
-          setSearchParams={setSearchParams}
-        />
-      )}
+      <PeopleTable
+        people={visiblePeople}
+        activeSlug={activeSlug}
+        sortBy={sortField}
+        order={sortOrder as 'asc' | 'desc'}
+        setSearchParams={setSearchParams}
+      />
     </>
   );
 };

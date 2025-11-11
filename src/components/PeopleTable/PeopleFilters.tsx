@@ -66,7 +66,6 @@ export const PeopleFilters: React.FC = () => {
         <a
           data-sex="all"
           className={!sex ? 'is-active' : ''}
-          href="src/components/PeopleTable/PeopleFilters#/people"
           onClick={handleSexChange}
         >
           All
@@ -74,7 +73,6 @@ export const PeopleFilters: React.FC = () => {
         <a
           data-sex="m"
           className={sex === 'm' ? 'is-active' : ''}
-          href="src/components/PeopleTable/PeopleFilters#/people?sex=m"
           onClick={handleSexChange}
         >
           Male
@@ -82,7 +80,6 @@ export const PeopleFilters: React.FC = () => {
         <a
           data-sex="f"
           className={sex === 'f' ? 'is-active' : ''}
-          href="src/components/PeopleTable/PeopleFilters#/people?sex=f"
           onClick={handleSexChange}
         >
           Female
