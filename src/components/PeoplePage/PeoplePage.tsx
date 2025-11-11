@@ -6,6 +6,8 @@ import { getPeople } from '../../api';
 import { PeopleFilters } from '../PeopleTable/PeopleFilters';
 import { PeopleTable } from '../PeopleTable/PeopleTable';
 
+type SortableField = 'name' | 'sex' | 'born' | 'died' | 'motherName' | 'fatherName';
+
 export const PeoplePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [people, setPeople] = useState<Person[]>([]);
@@ -36,10 +38,12 @@ export const PeoplePage: React.FC = () => {
         ),
     );
 
+  const fieldKey = sortField as SortableField;
+
   if (sortField && sortOrder) {
     visiblePeople = [...visiblePeople].sort((a, b) => {
-      const aValue: string | number | undefined | null = a[sortField];
-      const bValue: string | number | undefined | null = b[sortField];
+      const aValue: string | number | undefined | null = a[fieldKey];
+      const bValue: string | number | undefined | null = b[fieldKey];
 
       const isNumeric =
         typeof aValue === 'number' && typeof bValue === 'number';

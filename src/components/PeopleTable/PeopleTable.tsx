@@ -2,7 +2,7 @@
 import React from 'react';
 import { Person } from '../../types';
 import { PersonLink } from '../PersonLink/PersonLink';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PeopleTableHeader } from './PeopleTableHeader';
 
 interface Props {
@@ -21,6 +21,7 @@ export const PeopleTable: React.FC<Props> = ({
   setSearchParams,
 }) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   return (
     <table
@@ -39,7 +40,10 @@ export const PeopleTable: React.FC<Props> = ({
             key={person.slug}
             data-cy="person"
             onClick={() => {
-              navigate(`/people/${person.slug}`);
+              navigate({
+                pathname: `/people/${person.slug}`,
+                search: searchParams.toString(),
+              })
             }}
             className={
               activeSlug === person.slug ? 'has-background-warning' : ''
